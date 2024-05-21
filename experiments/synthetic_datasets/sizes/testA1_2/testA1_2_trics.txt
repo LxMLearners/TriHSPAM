@@ -1,0 +1,262 @@
+Total of planted triclusters: 3
+Number of planted numeric triclusters: 1
+Number of planted symbolic triclusters: 1
+Number of planted mixed triclusters: 1
+Tricluster coverage: 7.1%
+Missing values on dataset: 0.0%
+Noise values on dataset: 0.0%
+Errors on dataset: 0.0%
+
+
+*** Numeric triclusters *** 
+
+Tricluster #1
+ (26, 2, 2), X=[13,20,31,52,53,54,56,89,90,113,122,126,131,142,156,159,170,187,195,203,208,221,223,244,247,249], Y=[0,4], Z=[0,1], RowPattern=Constant, ColumnPattern=Constant, ContextPattern=Additive, Seed=1.4,  RowFactors=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], ColumnFactors=[0,0], ContextFactors=[7.29,7.99] %Missings=0, %Noise=0, %Errors=0, PlaidCoherency=No Overlapping
+
+Context: 0
+X	y0	y4	
+x13	8.69	8.69	
+x20	8.69	8.69	
+x31	8.69	8.69	
+x52	8.69	8.69	
+x53	8.69	8.69	
+x54	8.69	8.69	
+x56	8.69	8.69	
+x89	8.69	8.69	
+x90	8.69	8.69	
+x113	8.69	8.69	
+x122	8.69	8.69	
+x126	8.69	8.69	
+x131	8.69	8.69	
+x142	8.69	8.69	
+x156	8.69	8.69	
+x159	8.69	8.69	
+x170	8.69	8.69	
+x187	8.69	8.69	
+x195	8.69	8.69	
+x203	8.69	8.69	
+x208	8.69	8.69	
+x221	8.69	8.69	
+x223	8.69	8.69	
+x244	8.69	8.69	
+x247	8.69	8.69	
+x249	8.69	8.69	
+
+Context: 1
+X	y0	y4	
+x13	9.39	9.39	
+x20	9.39	9.39	
+x31	9.39	9.39	
+x52	9.39	9.39	
+x53	9.39	9.39	
+x54	9.39	9.39	
+x56	9.39	9.39	
+x89	9.39	9.39	
+x90	9.39	9.39	
+x113	9.39	9.39	
+x122	9.39	9.39	
+x126	9.39	9.39	
+x131	9.39	9.39	
+x142	9.39	9.39	
+x156	9.39	9.39	
+x159	9.39	9.39	
+x170	9.39	9.39	
+x187	9.39	9.39	
+x195	9.39	9.39	
+x203	9.39	9.39	
+x208	9.39	9.39	
+x221	9.39	9.39	
+x223	9.39	9.39	
+x244	9.39	9.39	
+x247	9.39	9.39	
+x249	9.39	9.39	
+
+
+*** Symbolic triclusters *** 
+
+Tricluster #0
+(34, 2, 2), X=[1,9,22,23,29,31,32,36,40,51,56,68,74,75,77,99,106,107,117,133,142,148,151,163,180,183,184,192,201,206,210,229,235,248], Y=[6,9], Z=[1,2], RowPattern=Constant, ColumnPattern=None, ContextPattern=Constant, %Missings=0, %Noise=0, %Errors=0 PlaidCoherency=None
+
+Context: 1
+X	y6	y9	
+x1	a	c	
+x9	a	c	
+x22	a	c	
+x23	a	c	
+x29	a	c	
+x31	a	c	
+x32	a	c	
+x36	a	c	
+x40	a	c	
+x51	a	c	
+x56	a	c	
+x68	a	c	
+x74	a	c	
+x75	a	c	
+x77	a	c	
+x99	a	c	
+x106	a	c	
+x107	a	c	
+x117	a	c	
+x133	a	c	
+x142	a	c	
+x148	a	c	
+x151	a	c	
+x163	a	c	
+x180	a	c	
+x183	a	c	
+x184	a	c	
+x192	a	c	
+x201	a	c	
+x206	a	c	
+x210	a	c	
+x229	a	c	
+x235	a	c	
+x248	a	c	
+
+Context: 2
+X	y6	y9	
+x1	a	c	
+x9	a	c	
+x22	a	c	
+x23	a	c	
+x29	a	c	
+x31	a	c	
+x32	a	c	
+x36	a	c	
+x40	a	c	
+x51	a	c	
+x56	a	c	
+x68	a	c	
+x74	a	c	
+x75	a	c	
+x77	a	c	
+x99	a	c	
+x106	a	c	
+x107	a	c	
+x117	a	c	
+x133	a	c	
+x142	a	c	
+x148	a	c	
+x151	a	c	
+x163	a	c	
+x180	a	c	
+x183	a	c	
+x184	a	c	
+x192	a	c	
+x201	a	c	
+x206	a	c	
+x210	a	c	
+x229	a	c	
+x235	a	c	
+x248	a	c	
+
+
+*** Mixed triclusters *** 
+
+Tricluster #2
+(47, 5, 2), X=[0,8,11,12,14,18,20,38,44,46,47,53,57,66,78,90,93,123,128,132,137,144,154,156,166,167,168,169,172,178,187,189,205,214,218,220,221,224,225,232,236,237,238,240,242,244,249], Numeric Columns=[1,2,3], Symbolic Columns=[6,7], Z=[1,2],
+Numeric Properties:  RowPattern=Constant, ColumnPattern=Constant, ContextPattern=Multiplicative, Seed=0.93,  RowFactors=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], ColumnFactors=[1,1,1], PlaidCoherency=No Overlapping
+Symbolic Properties:  RowPattern=Constant, ColumnPattern=None
+ ContextPattern=Constant,%Missings=0, %Noise=0, %Errors=0,
+
+Context: 1
+X	y1	y2	y3	y6	y7	
+x0	5.23	5.23	5.23	c	a	
+x8	5.23	5.23	5.23	c	a	
+x11	5.23	5.23	5.23	c	a	
+x12	5.23	5.23	5.23	c	a	
+x14	5.23	5.23	5.23	c	a	
+x18	5.23	5.23	5.23	c	a	
+x20	5.23	5.23	5.23	c	a	
+x38	5.23	5.23	5.23	c	a	
+x44	5.23	5.23	5.23	c	a	
+x46	5.23	5.23	5.23	c	a	
+x47	5.23	5.23	5.23	c	a	
+x53	5.23	5.23	5.23	c	a	
+x57	5.23	5.23	5.23	c	a	
+x66	5.23	5.23	5.23	c	a	
+x78	5.23	5.23	5.23	c	a	
+x90	5.23	5.23	5.23	c	a	
+x93	5.23	5.23	5.23	c	a	
+x123	5.23	5.23	5.23	c	a	
+x128	5.23	5.23	5.23	c	a	
+x132	5.23	5.23	5.23	c	a	
+x137	5.23	5.23	5.23	c	a	
+x144	5.23	5.23	5.23	c	a	
+x154	5.23	5.23	5.23	c	a	
+x156	5.23	5.23	5.23	c	a	
+x166	5.23	5.23	5.23	c	a	
+x167	5.23	5.23	5.23	c	a	
+x168	5.23	5.23	5.23	c	a	
+x169	5.23	5.23	5.23	c	a	
+x172	5.23	5.23	5.23	c	a	
+x178	5.23	5.23	5.23	c	a	
+x187	5.23	5.23	5.23	c	a	
+x189	5.23	5.23	5.23	c	a	
+x205	5.23	5.23	5.23	c	a	
+x214	5.23	5.23	5.23	c	a	
+x218	5.23	5.23	5.23	c	a	
+x220	5.23	5.23	5.23	c	a	
+x221	5.23	5.23	5.23	c	a	
+x224	5.23	5.23	5.23	c	a	
+x225	5.23	5.23	5.23	c	a	
+x232	5.23	5.23	5.23	c	a	
+x236	5.23	5.23	5.23	c	a	
+x237	5.23	5.23	5.23	c	a	
+x238	5.23	5.23	5.23	c	a	
+x240	5.23	5.23	5.23	c	a	
+x242	5.23	5.23	5.23	c	a	
+x244	5.23	5.23	5.23	c	a	
+x249	5.23	5.23	5.23	c	a	
+
+Context: 2
+X	y1	y2	y3	y6	y7	
+x0	3.54	3.54	3.54	c	a	
+x8	3.54	3.54	3.54	c	a	
+x11	3.54	3.54	3.54	c	a	
+x12	3.54	3.54	3.54	c	a	
+x14	3.54	3.54	3.54	c	a	
+x18	3.54	3.54	3.54	c	a	
+x20	3.54	3.54	3.54	c	a	
+x38	3.54	3.54	3.54	c	a	
+x44	3.54	3.54	3.54	c	a	
+x46	3.54	3.54	3.54	c	a	
+x47	3.54	3.54	3.54	c	a	
+x53	3.54	3.54	3.54	c	a	
+x57	3.54	3.54	3.54	c	a	
+x66	3.54	3.54	3.54	c	a	
+x78	3.54	3.54	3.54	c	a	
+x90	3.54	3.54	3.54	c	a	
+x93	3.54	3.54	3.54	c	a	
+x123	3.54	3.54	3.54	c	a	
+x128	3.54	3.54	3.54	c	a	
+x132	3.54	3.54	3.54	c	a	
+x137	3.54	3.54	3.54	c	a	
+x144	3.54	3.54	3.54	c	a	
+x154	3.54	3.54	3.54	c	a	
+x156	3.54	3.54	3.54	c	a	
+x166	3.54	3.54	3.54	c	a	
+x167	3.54	3.54	3.54	c	a	
+x168	3.54	3.54	3.54	c	a	
+x169	3.54	3.54	3.54	c	a	
+x172	3.54	3.54	3.54	c	a	
+x178	3.54	3.54	3.54	c	a	
+x187	3.54	3.54	3.54	c	a	
+x189	3.54	3.54	3.54	c	a	
+x205	3.54	3.54	3.54	c	a	
+x214	3.54	3.54	3.54	c	a	
+x218	3.54	3.54	3.54	c	a	
+x220	3.54	3.54	3.54	c	a	
+x221	3.54	3.54	3.54	c	a	
+x224	3.54	3.54	3.54	c	a	
+x225	3.54	3.54	3.54	c	a	
+x232	3.54	3.54	3.54	c	a	
+x236	3.54	3.54	3.54	c	a	
+x237	3.54	3.54	3.54	c	a	
+x238	3.54	3.54	3.54	c	a	
+x240	3.54	3.54	3.54	c	a	
+x242	3.54	3.54	3.54	c	a	
+x244	3.54	3.54	3.54	c	a	
+x249	3.54	3.54	3.54	c	a	
+

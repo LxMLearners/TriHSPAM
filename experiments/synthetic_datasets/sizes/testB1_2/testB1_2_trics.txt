@@ -1,0 +1,299 @@
+Total of planted triclusters: 3
+Number of planted numeric triclusters: 1
+Number of planted symbolic triclusters: 1
+Number of planted mixed triclusters: 1
+Tricluster coverage: 6.32%
+Missing values on dataset: 0.0%
+Noise values on dataset: 0.0%
+Errors on dataset: 0.0%
+
+
+*** Numeric triclusters *** 
+
+Tricluster #1
+ (30, 2, 2), X=[12,19,21,24,28,31,35,41,45,50,60,69,73,88,93,95,99,111,119,122,131,161,165,203,205,207,209,217,225,244], Y=[2,4], Z=[2,3], RowPattern=Constant, ColumnPattern=Constant, ContextPattern=Additive, Seed=5.4,  RowFactors=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], ColumnFactors=[0,0], ContextFactors=[-0.45,3.34] %Missings=0, %Noise=0, %Errors=0, PlaidCoherency=No Overlapping
+
+Context: 2
+X	y2	y4	
+x12	4.95	4.95	
+x19	4.95	4.95	
+x21	4.95	4.95	
+x24	4.95	4.95	
+x28	4.95	4.95	
+x31	4.95	4.95	
+x35	4.95	4.95	
+x41	4.95	4.95	
+x45	4.95	4.95	
+x50	4.95	4.95	
+x60	4.95	4.95	
+x69	4.95	4.95	
+x73	4.95	4.95	
+x88	4.95	4.95	
+x93	4.95	4.95	
+x95	4.95	4.95	
+x99	4.95	4.95	
+x111	4.95	4.95	
+x119	4.95	4.95	
+x122	4.95	4.95	
+x131	4.95	4.95	
+x161	4.95	4.95	
+x165	4.95	4.95	
+x203	4.95	4.95	
+x205	4.95	4.95	
+x207	4.95	4.95	
+x209	4.95	4.95	
+x217	4.95	4.95	
+x225	4.95	4.95	
+x244	4.95	4.95	
+
+Context: 3
+X	y2	y4	
+x12	8.73	8.73	
+x19	8.73	8.73	
+x21	8.73	8.73	
+x24	8.73	8.73	
+x28	8.73	8.73	
+x31	8.73	8.73	
+x35	8.73	8.73	
+x41	8.73	8.73	
+x45	8.73	8.73	
+x50	8.73	8.73	
+x60	8.73	8.73	
+x69	8.73	8.73	
+x73	8.73	8.73	
+x88	8.73	8.73	
+x93	8.73	8.73	
+x95	8.73	8.73	
+x99	8.73	8.73	
+x111	8.73	8.73	
+x119	8.73	8.73	
+x122	8.73	8.73	
+x131	8.73	8.73	
+x161	8.73	8.73	
+x165	8.73	8.73	
+x203	8.73	8.73	
+x205	8.73	8.73	
+x207	8.73	8.73	
+x209	8.73	8.73	
+x217	8.73	8.73	
+x225	8.73	8.73	
+x244	8.73	8.73	
+
+
+*** Symbolic triclusters *** 
+
+Tricluster #0
+(28, 3, 2), X=[35,37,51,61,67,78,81,82,95,98,100,102,106,107,124,128,131,138,139,140,142,144,159,160,172,176,239,245], Y=[7,8,9], Z=[2,3], RowPattern=Constant, ColumnPattern=None, ContextPattern=Constant, %Missings=0, %Noise=0, %Errors=0 PlaidCoherency=None
+
+Context: 2
+X	y7	y8	y9	
+x35	b	b	b	
+x37	b	b	b	
+x51	b	b	b	
+x61	b	b	b	
+x67	b	b	b	
+x78	b	b	b	
+x81	b	b	b	
+x82	b	b	b	
+x95	b	b	b	
+x98	b	b	b	
+x100	b	b	b	
+x102	b	b	b	
+x106	b	b	b	
+x107	b	b	b	
+x124	b	b	b	
+x128	b	b	b	
+x131	b	b	b	
+x138	b	b	b	
+x139	b	b	b	
+x140	b	b	b	
+x142	b	b	b	
+x144	b	b	b	
+x159	b	b	b	
+x160	b	b	b	
+x172	b	b	b	
+x176	b	b	b	
+x239	b	b	b	
+x245	b	b	b	
+
+Context: 3
+X	y7	y8	y9	
+x35	b	b	b	
+x37	b	b	b	
+x51	b	b	b	
+x61	b	b	b	
+x67	b	b	b	
+x78	b	b	b	
+x81	b	b	b	
+x82	b	b	b	
+x95	b	b	b	
+x98	b	b	b	
+x100	b	b	b	
+x102	b	b	b	
+x106	b	b	b	
+x107	b	b	b	
+x124	b	b	b	
+x128	b	b	b	
+x131	b	b	b	
+x138	b	b	b	
+x139	b	b	b	
+x140	b	b	b	
+x142	b	b	b	
+x144	b	b	b	
+x159	b	b	b	
+x160	b	b	b	
+x172	b	b	b	
+x176	b	b	b	
+x239	b	b	b	
+x245	b	b	b	
+
+
+*** Mixed triclusters *** 
+
+Tricluster #2
+(44, 5, 3), X=[2,4,5,14,17,23,27,28,31,39,41,55,56,60,65,72,76,83,89,93,101,110,116,125,136,150,157,158,163,164,169,170,171,177,179,184,185,198,204,206,210,214,217,248], Numeric Columns=[0,3], Symbolic Columns=[5,6,8], Z=[0,1,2],
+Numeric Properties:  RowPattern=Constant, ColumnPattern=Constant, ContextPattern=Additive, Seed=4.3,  RowFactors=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], ColumnFactors=[0,0], PlaidCoherency=No Overlapping
+Symbolic Properties:  RowPattern=Constant, ColumnPattern=None
+ ContextPattern=Constant,%Missings=0, %Noise=0, %Errors=0,
+
+Context: 0
+X	y0	y3	y5	y6	y8	
+x2	2.29	2.29	b	a	c	
+x4	2.29	2.29	b	a	c	
+x5	2.29	2.29	b	a	c	
+x14	2.29	2.29	b	a	c	
+x17	2.29	2.29	b	a	c	
+x23	2.29	2.29	b	a	c	
+x27	2.29	2.29	b	a	c	
+x28	2.29	2.29	b	a	c	
+x31	2.29	2.29	b	a	c	
+x39	2.29	2.29	b	a	c	
+x41	2.29	2.29	b	a	c	
+x55	2.29	2.29	b	a	c	
+x56	2.29	2.29	b	a	c	
+x60	2.29	2.29	b	a	c	
+x65	2.29	2.29	b	a	c	
+x72	2.29	2.29	b	a	c	
+x76	2.29	2.29	b	a	c	
+x83	2.29	2.29	b	a	c	
+x89	2.29	2.29	b	a	c	
+x93	2.29	2.29	b	a	c	
+x101	2.29	2.29	b	a	c	
+x110	2.29	2.29	b	a	c	
+x116	2.29	2.29	b	a	c	
+x125	2.29	2.29	b	a	c	
+x136	2.29	2.29	b	a	c	
+x150	2.29	2.29	b	a	c	
+x157	2.29	2.29	b	a	c	
+x158	2.29	2.29	b	a	c	
+x163	2.29	2.29	b	a	c	
+x164	2.29	2.29	b	a	c	
+x169	2.29	2.29	b	a	c	
+x170	2.29	2.29	b	a	c	
+x171	2.29	2.29	b	a	c	
+x177	2.29	2.29	b	a	c	
+x179	2.29	2.29	b	a	c	
+x184	2.29	2.29	b	a	c	
+x185	2.29	2.29	b	a	c	
+x198	2.29	2.29	b	a	c	
+x204	2.29	2.29	b	a	c	
+x206	2.29	2.29	b	a	c	
+x210	2.29	2.29	b	a	c	
+x214	2.29	2.29	b	a	c	
+x217	2.29	2.29	b	a	c	
+x248	2.29	2.29	b	a	c	
+
+Context: 1
+X	y0	y3	y5	y6	y8	
+x2	6.48	6.48	b	a	c	
+x4	6.48	6.48	b	a	c	
+x5	6.48	6.48	b	a	c	
+x14	6.48	6.48	b	a	c	
+x17	6.48	6.48	b	a	c	
+x23	6.48	6.48	b	a	c	
+x27	6.48	6.48	b	a	c	
+x28	6.48	6.48	b	a	c	
+x31	6.48	6.48	b	a	c	
+x39	6.48	6.48	b	a	c	
+x41	6.48	6.48	b	a	c	
+x55	6.48	6.48	b	a	c	
+x56	6.48	6.48	b	a	c	
+x60	6.48	6.48	b	a	c	
+x65	6.48	6.48	b	a	c	
+x72	6.48	6.48	b	a	c	
+x76	6.48	6.48	b	a	c	
+x83	6.48	6.48	b	a	c	
+x89	6.48	6.48	b	a	c	
+x93	6.48	6.48	b	a	c	
+x101	6.48	6.48	b	a	c	
+x110	6.48	6.48	b	a	c	
+x116	6.48	6.48	b	a	c	
+x125	6.48	6.48	b	a	c	
+x136	6.48	6.48	b	a	c	
+x150	6.48	6.48	b	a	c	
+x157	6.48	6.48	b	a	c	
+x158	6.48	6.48	b	a	c	
+x163	6.48	6.48	b	a	c	
+x164	6.48	6.48	b	a	c	
+x169	6.48	6.48	b	a	c	
+x170	6.48	6.48	b	a	c	
+x171	6.48	6.48	b	a	c	
+x177	6.48	6.48	b	a	c	
+x179	6.48	6.48	b	a	c	
+x184	6.48	6.48	b	a	c	
+x185	6.48	6.48	b	a	c	
+x198	6.48	6.48	b	a	c	
+x204	6.48	6.48	b	a	c	
+x206	6.48	6.48	b	a	c	
+x210	6.48	6.48	b	a	c	
+x214	6.48	6.48	b	a	c	
+x217	6.48	6.48	b	a	c	
+x248	6.48	6.48	b	a	c	
+
+Context: 2
+X	y0	y3	y5	y6	y8	
+x2	7.77	7.77	b	a	c	
+x4	7.77	7.77	b	a	c	
+x5	7.77	7.77	b	a	c	
+x14	7.77	7.77	b	a	c	
+x17	7.77	7.77	b	a	c	
+x23	7.77	7.77	b	a	c	
+x27	7.77	7.77	b	a	c	
+x28	7.77	7.77	b	a	c	
+x31	7.77	7.77	b	a	c	
+x39	7.77	7.77	b	a	c	
+x41	7.77	7.77	b	a	c	
+x55	7.77	7.77	b	a	c	
+x56	7.77	7.77	b	a	c	
+x60	7.77	7.77	b	a	c	
+x65	7.77	7.77	b	a	c	
+x72	7.77	7.77	b	a	c	
+x76	7.77	7.77	b	a	c	
+x83	7.77	7.77	b	a	c	
+x89	7.77	7.77	b	a	c	
+x93	7.77	7.77	b	a	c	
+x101	7.77	7.77	b	a	c	
+x110	7.77	7.77	b	a	c	
+x116	7.77	7.77	b	a	c	
+x125	7.77	7.77	b	a	c	
+x136	7.77	7.77	b	a	c	
+x150	7.77	7.77	b	a	c	
+x157	7.77	7.77	b	a	c	
+x158	7.77	7.77	b	a	c	
+x163	7.77	7.77	b	a	c	
+x164	7.77	7.77	b	a	c	
+x169	7.77	7.77	b	a	c	
+x170	7.77	7.77	b	a	c	
+x171	7.77	7.77	b	a	c	
+x177	7.77	7.77	b	a	c	
+x179	7.77	7.77	b	a	c	
+x184	7.77	7.77	b	a	c	
+x185	7.77	7.77	b	a	c	
+x198	7.77	7.77	b	a	c	
+x204	7.77	7.77	b	a	c	
+x206	7.77	7.77	b	a	c	
+x210	7.77	7.77	b	a	c	
+x214	7.77	7.77	b	a	c	
+x217	7.77	7.77	b	a	c	
+x248	7.77	7.77	b	a	c	
+
