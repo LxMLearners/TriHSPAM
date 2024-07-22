@@ -30,7 +30,7 @@ def get_feature_type(features_type, f_label):
         if f_label in v:
             return k
 
-def data_to_instants(data_vector, feature_label, abstractions, symbolic):
+def data_to_instants(data_vector, feature_label, abstractions, symbolic, relaxed=False):
     if not symbolic:
         data_vector = [float(x) for x in data_vector]
         data_vector = list(filter(lambda x: not np.isnan(x), data_vector))
@@ -43,24 +43,25 @@ def data_to_instants(data_vector, feature_label, abstractions, symbolic):
         for i in range(len(data_vector)):
             abst = get_abstraction_bins(abstractions, data_vector[i]) if not symbolic else get_abstraction_symb(abstractions, data_vector[i])
             if abst:
-                state = State(f"{feature_label}_{i}", abst)
+                state_label = f"{feature_label}_{i}" if not relaxed else f"{feature_label}"
+                state = State(state_label, abst)
                 new_int = InstantState(state, i)
                 result.append(new_int)
     return result
 
 
-def data_to_instant_mss(tw_data, feature_labels, features_type, abstractions):
+def data_to_instant_mss(tw_data, feature_labels, features_type, abstractions, relaxed=False):
     result = {}
     for x_i in range(len(tw_data[0])):
         for y_j in range(len(tw_data)):
             result.setdefault(f"X{x_i}", [])
             if get_feature_type(features_type, feature_labels[y_j]) == "numeric":
                 next_seq = data_to_instants(
-                    tw_data[y_j][x_i], feature_labels[y_j], find_abstractions(y_j, abstractions), False)
+                    tw_data[y_j][x_i], feature_labels[y_j], find_abstractions(y_j, abstractions), False, relaxed)
                 result[f"X{x_i}"].extend(next_seq)
             else:
                 next_seq = data_to_instants(
-                    tw_data[y_j][x_i], feature_labels[y_j], find_abstractions(y_j, abstractions), True)
+                    tw_data[y_j][x_i], feature_labels[y_j], find_abstractions(y_j, abstractions), True, relaxed)
                 result[f"X{x_i}"].extend(next_seq)
 
     return result
@@ -160,6 +161,48 @@ def get_subjects_patterns(file, feature_labels, abstractions):
                         1].rstrip().split("#SID: ")[1].split(" "))
     seqs = get_sequences(seqs, feature_labels, abstractions).split("\n")
     return dict(zip(seqs, subj_ids))
+
+
+def find_first_indices(list_of_lists, sublist):
+    lst_index = []
+    for index, lst in enumerate(list_of_lists):
+        if all(elem in lst for elem in sublist):
+            lst_index.append(index)
+    return lst_index
+
+def intersection_of_lists(*lists):
+    if not lists:
+        return []
+
+    # Convert the first list to a set
+    result_set = set(lists[0])
+
+    # Iterate over the remaining lists and keep only common elements
+    for lst in lists[1:]:
+        result_set.intersection_update(lst)
+
+    return list(result_set)
+
+def reduce_patterns(seq, pattern):
+    result = []
+    for si, s in enumerate(seq):
+        result.append(intersection_of_lists(s, pattern[si]))
+    return result
+
+def find_sublist_indices(all, sub):
+    for fi in find_first_indices(all, sub[0]):
+        if reduce_patterns(all[fi:fi+len(sub)], sub).sort() == sub.sort():
+            return list(range(fi, fi+len(sub)))
+    return []
+
+def find_tp_pattern(mss_x, pattern):
+    pp_pattern = []
+    l_pat = pattern.split(") (")
+    for itemset in l_pat:
+        ss = itemset.strip("()")
+        ss = ss.split(" ")
+        pp_pattern.append(ss)
+    return find_sublist_indices(mss_x, pp_pattern)
 
 
 def find_interval(int_to_find, list_intervals):

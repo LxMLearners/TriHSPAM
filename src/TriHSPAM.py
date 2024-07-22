@@ -5,7 +5,7 @@ import numpy as np
 import trihspam_utils as utils
 from pathlib import Path
 from triclustering_evaluation import h_var3
-from itertools import product
+from sklearn.preprocessing import MinMaxScaler
 
 class TriHSPAM:
     """ TriHSPAM Algorithm (Soares et al., 2024)
@@ -71,7 +71,8 @@ class TriHSPAM:
             disc_method='eq_size', 
             n_bins=5,
             mv_method=None, 
-            spm_algo="fournier08closed", 
+            spm_algo="fournier08closed",
+            time_relaxed=False, 
             coerence_threshold=0.5
         ):
         
@@ -91,6 +92,7 @@ class TriHSPAM:
         self._n_bins = n_bins
         self._mv_method = mv_method
         self._spm_algo = spm_algo
+        self._relaxed = time_relaxed
         self._coer_thresh = coerence_threshold
 
     def set_discretization(self, discretization):
@@ -113,7 +115,8 @@ class TriHSPAM:
 
         Parameters
         ----------
-        X : array-like of shape (n_observations, n_features, n_contexts)
+        X : array-like of shape (n_features, n_observations, n_contexts) if time_as_cols, 
+                        or shape (n_contexts, n_observations, n_features) otherwise
             Training data.
 
         Returns
@@ -133,7 +136,11 @@ class TriHSPAM:
         num_cube = self._data[self._num_features_idx , :, :]
         num_cube = num_cube.astype(float)
         symb_cube = self._data[self._symb_features_idx, :, :]
-        
+        # print(num_cube)
+        # scaler = MinMaxScaler()
+        # num_cube = scaler.fit_transform(num_cube.reshape(-1, num_cube.shape[-1])).reshape(num_cube.shape)
+        # print(num_cube)
+
         if not hasattr(self, "_abstractions"):
             #Discretization
             self._abstractions = {}
@@ -160,7 +167,7 @@ class TriHSPAM:
         types['numeric'] = [f_labels[i] for i in self._num_features_idx]
         types['symbolic'] = [f_labels[i] for i in self._symb_features_idx]
 
-        self._mss = utils.data_to_instant_mss(self._data, f_labels, types, self._abstractions)
+        self._mss = utils.data_to_instant_mss(self._data, f_labels, types, self._abstractions, self._relaxed)
 
         K = len(self._data[0][0])
         self._mss_subjects = {}
@@ -179,12 +186,12 @@ class TriHSPAM:
         
         if self._spm_algo != "fournier08closed":
             subprocess.run(
-                f'java -jar ../spmf_vd.jar run {self._available_algo[self._spm_algo]} '
+                f'java -jar spmf_vd.jar run {self._available_algo[self._spm_algo]} '
                 + f'{input_temp_file} {output_temp_file} {percent_min_I}% true', 
                 shell=True)
         else:
             subprocess.run(
-                f'java -jar ../spmf_vd.jar run {self._available_algo[self._spm_algo]} '
+                f'java -jar spmf_vd.jar run {self._available_algo[self._spm_algo]} '
                     + f'{input_temp_file} {output_temp_file} {percent_min_I}% 1 1 '
                     + f'{self._min_K-1} {self._data.shape[2]-1}', 
                 shell=True)
@@ -197,39 +204,57 @@ class TriHSPAM:
 
         self._triclusters_type = dict()
         for pattern, observations in self._patterns.items():
+            pattern = pattern.strip(" ")
             rows_I = list(map(int, observations))
             cols_J = list()
             contx_K = list()
             cols_contx_JK = utils.extract_features(pattern)
-            for jk in cols_contx_JK:
-                j_k_split = jk.split("_")
-                j = int(j_k_split[0].replace("f",""))
-                k = int(j_k_split[1])
-                if j not in cols_J:
-                    cols_J.append(j)
-                    cols_J.sort()
-                if k not in contx_K:
-                    contx_K.append(k)
-                    contx_K.sort()
-            rows_I.sort()
-            cols_J.sort()
-            contx_K.sort()
-            candidate_tric = (rows_I, cols_J, contx_K)
-            num_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._num_features_idx]
-            symb_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._symb_features_idx]
-            c_tric = np.transpose(TriHSPAM.get_subcube(self._data, rows_I, cols_J, contx_K), (2,1,0))
-            fitness_val = h_var3(c_tric, num_cols_tric, symb_cols_tric)
-            fit_val = fitness_val
-            if fit_val <= self._coer_thresh and len(rows_I) >= self._min_I and len(cols_J) >= self._min_J and len(contx_K) >= self._min_K:
-                has_sym = any(element in self._symb_features_idx for element in cols_J)
-                has_num = any(element in self._num_features_idx for element in cols_J)
-                if has_sym and has_num:
-                    self._triclusters_type.setdefault("MixedTriclusters", []).append(candidate_tric)
-                elif has_num:
-                    self._triclusters_type.setdefault("NumericTriclusters", []).append(candidate_tric)
-                elif has_sym:
-                    self._triclusters_type.setdefault("SymbolicTriclusters", []).append(candidate_tric)
-        
+            if self._relaxed:
+                contx_K = dict()
+                for jk in cols_contx_JK:
+                    j = int(jk.replace("f",""))
+                    if j not in cols_J:
+                        cols_J.append(j)
+                        cols_J.sort()
+                for ri in rows_I:
+                    contx_K[ri] = utils.find_tp_pattern(self._mss_subjects[f"X{ri}"], pattern)
+                candidate_tric = (rows_I, cols_J, contx_K)
+                num_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._num_features_idx]
+                symb_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._symb_features_idx]
+                c_tric = np.transpose(TriHSPAM.get_subcube_special(self._data, rows_I, cols_J, contx_K), (2,1,0))
+            else:
+                for jk in cols_contx_JK:
+                    j_k_split = jk.split("_")
+                    j = int(j_k_split[0].replace("f",""))
+                    k = int(j_k_split[1])
+                    if j not in cols_J:
+                        cols_J.append(j)
+                        cols_J.sort()
+                    if k not in contx_K:
+                        contx_K.append(k)
+                        contx_K.sort()
+                rows_I.sort()
+                cols_J.sort()
+                contx_K.sort()
+                candidate_tric = (rows_I, cols_J, contx_K)
+                num_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._num_features_idx]
+                symb_cols_tric = [i for i, elem in enumerate(cols_J) if elem in self._symb_features_idx]
+                c_tric = np.transpose(TriHSPAM.get_subcube(self._data, rows_I, cols_J, contx_K), (2,1,0))
+            rows_size, cols_size = len(rows_I), len(cols_J)
+            conts_size = len(contx_K) if not self._relaxed else len(list(contx_K.values())[0])
+            if rows_size >= self._min_I and cols_size >= self._min_J and conts_size >= self._min_K:
+                fitness_val = h_var3(c_tric, num_cols_tric, symb_cols_tric)
+                fit_val = fitness_val
+                if fit_val <= self._coer_thresh:
+                    has_sym = any(element in self._symb_features_idx for element in cols_J)
+                    has_num = any(element in self._num_features_idx for element in cols_J)
+                    if has_sym and has_num:
+                        self._triclusters_type.setdefault("MixedTriclusters", []).append(candidate_tric)
+                    elif has_num:
+                        self._triclusters_type.setdefault("NumericTriclusters", []).append(candidate_tric)
+                    elif has_sym:
+                        self._triclusters_type.setdefault("SymbolicTriclusters", []).append(candidate_tric)
+    
         self._triclusters = [item for tr_list in self._triclusters_type.values() for item in tr_list]
         return self
     
@@ -245,7 +270,7 @@ class TriHSPAM:
     
     def get_tricluster(self, i):
         X,Y,Z = self._triclusters[i]
-        tricluster = TriHSPAM.get_subcube(self._data, X, Y, Z)
+        tricluster = TriHSPAM.get_subcube(self._data, X, Y, Z) if not self._relaxed else TriHSPAM.get_subcube_special(self._data, X, Y, Z)
         return tricluster
 
     def save_triclusters(self, time_as_cols, file_path):
@@ -297,20 +322,40 @@ class TriHSPAM:
     def tric_size(tric):
         return len(tric[0]) * len(tric[1]) * len(tric[2])
     
+    # @staticmethod
+    # def get_subcube(data, X_rows, J_cols, Z_conts):
+
+    #     X,Y,Z = X_rows, J_cols, Z_conts
+    #     subcube = np.zeros(data.shape, dtype=object) 
+    #     for z_k, x_i, y_j in list(product(Z, X, Y)):
+    #             subcube[y_j, x_i, z_k] = data[y_j, x_i, z_k]
+
+    #     non_zero_indices_axis0 = np.any(subcube != 0, axis=(1, 2))
+    #     non_zero_indices_axis1 = np.any(subcube != 0, axis=(0, 2))
+    #     non_zero_indices_axis2 = np.any(subcube != 0, axis=(0, 1))
+
+    #     # Extract the submatrix without zeros
+    #     subcube = subcube[non_zero_indices_axis0, :, :]
+    #     subcube = subcube[:, non_zero_indices_axis1, :]
+    #     subcube = subcube[:, :, non_zero_indices_axis2]
+    #     return subcube
+
     @staticmethod
     def get_subcube(data, X_rows, J_cols, Z_conts):
-
-        X,Y,Z = X_rows, J_cols, Z_conts
-        subcube = np.zeros(data.shape, dtype=object) 
-        for z_k, x_i, y_j in list(product(Z, X, Y)):
-                subcube[y_j, x_i, z_k] = data[y_j, x_i, z_k]
-
-        non_zero_indices_axis0 = np.any(subcube != 0, axis=(1, 2))
-        non_zero_indices_axis1 = np.any(subcube != 0, axis=(0, 2))
-        non_zero_indices_axis2 = np.any(subcube != 0, axis=(0, 1))
-
-        # Extract the submatrix without zeros
-        subcube = subcube[non_zero_indices_axis0, :, :]
-        subcube = subcube[:, non_zero_indices_axis1, :]
-        subcube = subcube[:, :, non_zero_indices_axis2]
+        subcube_sizes = (len(J_cols), len(X_rows), len(Z_conts))
+        subcube = np.zeros(subcube_sizes, dtype=object) 
+        for i, x_i in enumerate(X_rows):
+            for j, y_j in enumerate(J_cols):
+                for k, z_k in enumerate(Z_conts):
+                    subcube[j, i, k] = data[y_j, x_i, z_k]
+        return subcube
+    
+    @staticmethod
+    def get_subcube_special(data, X_rows, J_cols, Z_conts):
+        subcube_sizes = (len(J_cols), len(X_rows), len(list(Z_conts.values())[0]))
+        subcube = np.zeros(subcube_sizes, dtype=object) 
+        for i, x_i in enumerate(X_rows):
+            for j, y_j in enumerate(J_cols):
+                for k, z_k in enumerate(Z_conts[x_i]):
+                    subcube[j, i, k] = data[y_j, x_i, z_k]
         return subcube
