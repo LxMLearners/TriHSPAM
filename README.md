@@ -1,10 +1,8 @@
-# TriHSPAM: 
-
-## Getting Started 🛠️
-
+# TriHSPAM: Triclustering Heterogeneous Longitudinal Clinical Data using Sequential Patterns  
 
 
 ## Citing the Paper 📑
 
-If you use TriHPAM in your research, please cite our paper:
+If you use TriHSPAM in your research, please cite our paper:
 
+TBA
