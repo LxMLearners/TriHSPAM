@@ -27,8 +27,8 @@ data = [
 triclustering = TriHSPAM(symb_features_idx=[1],
                          num_features_idx=[0,2],
                          min_I=1,
-                         min_J= 0,
-                         min_K= 0,
+                         min_J=0,
+                         min_K=0,
                          n_bins=3,
                          time_relaxed=True,
                          spm_algo='fournier08closed')
