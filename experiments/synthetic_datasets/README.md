@@ -8,7 +8,7 @@
 | **# Contexts** | 4 | 4 | 4 | 4 | 4 |
 | **Symbolic Alphabet** | {a,b,c} | {a,b,c} | {a,b,c} | {a,b,c} + {d,e,f} | {a,b,c} + {d,e,f} |
 | **Numeric Alphabet** | Real [0, 10] | Real [0, 10] | Real [0, 10] | Real [0, 10] | Real [0, 10] |
-| **Symbolic Background** | Uniform | Uniform | Uniform | Uniform + Discrete(0.3, 0.5, 0.2) | Uniform + Discrete(0.3, 0.5, 0.2) |
+| **Symbolic Background** | Uniform | Uniform | Uniform | Uniform + Discrete(0.2, 0.3, 0.5) | Uniform + Discrete(0.2, 0.3, 0.5) |
 | **Numeric Background** | Uniform | Uniform | Uniform | Uniform | Uniform |
 | **Missings** | 0% | 0% | 5% | 0% | 0% |
 | **Noise** | 0% | 0% | 10% | 0% | 0% |
