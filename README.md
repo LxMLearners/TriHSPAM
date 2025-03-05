@@ -39,6 +39,11 @@ triclustering.triclusters_()
 
 ```
 
+## Experimental Data 📊🧪
+
+TriHSPAM effectiveness can be assessed with synthetic data with planted triclusters.
+Datasets are available in [synthetic datasets folder](/experiments/synthetic_datasets/) together with their settings.
+
 ## Citing the Paper 📑
 
 If you use TriHSPAM in your research, please cite our paper:
