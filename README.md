@@ -48,4 +48,17 @@ Datasets are available in [synthetic datasets folder](/experiments/synthetic_dat
 
 If you use TriHSPAM in your research, please cite our paper:
 
-TBA
+Soares, D. F., Henriques, R., & Madeira, S. C. (2025). TriHSPAM: Triclustering heterogeneous longitudinal clinical data using sequential patterns. Pattern Recognition, 167, 111762.
+https://doi.org/10.1016/j.patcog.2025.111762
+
+```bibtex
+@article{soares2025trihspam,
+  title={TriHSPAM: Triclustering heterogeneous longitudinal clinical data using sequential patterns},
+  author={Soares, Diogo F and Henriques, Rui and Madeira, Sara C},
+  journal={Pattern Recognition},
+  volume={167},
+  pages={111762},
+  year={2025},
+  publisher={Elsevier}
+}
+```
